@@ -6,6 +6,9 @@
   "scripts": {
     "test": "cypress"
   },
+  "devDependencies": {
+    "cypress": "^12.1.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tardisone/cortex-sites-tests.git"
