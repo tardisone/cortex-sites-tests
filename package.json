@@ -7,7 +7,9 @@
     "test": "cypress"
   },
   "devDependencies": {
-    "cypress": "^12.1.0"
+    "cypress": "^12.1.0",
+    "eslint": "^7.28.0",
+    "prettier": "^2.3.0"
   },
   "repository": {
     "type": "git",
