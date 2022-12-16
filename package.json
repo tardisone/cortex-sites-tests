@@ -1,0 +1,24 @@
+{
+  "name": "cortex-sites-tests",
+  "version": "1.0.0",
+  "description": "System Level (E2E) Tests for Cortex Client Sites",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress"
+  },
+  "devDependencies": {
+    "cypress": "^12.1.0",
+    "eslint": "^7.28.0",
+    "prettier": "^2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tardisone/cortex-sites-tests.git"
+  },
+  "author": "mesutdurukal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tardisone/cortex-sites-tests/issues"
+  },
+  "homepage": "https://github.com/tardisone/cortex-sites-tests#readme"
+}
