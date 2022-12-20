@@ -1,6 +1,9 @@
 name: Manual Cypress Tests
 on:
     workflow_dispatch:
+      inputs:
+        tag:
+          description: 'Test scenario tags'
 jobs:
     test-workflow:
         runs-on: windows-latest
