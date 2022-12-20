@@ -14,7 +14,7 @@ jobs:
               uses: cypress-io/github-action@v3
               with:
                 env: scope=smoke,app=gigajob,stage=qa,executionPlatforms=["desktop"]
-                spec: cypress/integration/clientsites/*.js
+                spec: cypress/e2e/clientsites/*.js
                 browser: chrome
                 tag: 'gigajob,chrome,desktop'
                 record: true
