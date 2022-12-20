@@ -16,7 +16,6 @@ jobs:
                 env: scope=smoke,app=gigajob,stage=qa,executionPlatforms=["desktop"]
                 spec: cypress/e2e/clientsites/*.js
                 browser: chrome
-                tag: 'gigajob,chrome,desktop'
                 record: true
               env:
                 CORTEX_GITHUB_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
