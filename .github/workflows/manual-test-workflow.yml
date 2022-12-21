@@ -1,9 +1,7 @@
 name: Manual Cypress Tests
 on:
     workflow_dispatch:
-      inputs:
-        tag:
-          description: 'Test scenario tags'
+
 jobs:
     test-workflow:
         runs-on: windows-latest
@@ -13,9 +11,10 @@ jobs:
             - name: Cypress tests
               uses: cypress-io/github-action@v3
               with:
-                env: scope=smoke,app=gigajob,stage=qa,executionPlatforms=["desktop"]
+                env: scope=smoke,app=careesma,stage=qa,executionPlatforms=["desktop"]
                 spec: cypress/e2e/clientsites/*.js
                 browser: chrome
+                tag: 'careesma,chrome,desktop'
                 record: true
               env:
                 CORTEX_GITHUB_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
