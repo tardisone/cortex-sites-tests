@@ -3,13 +3,33 @@ on:
     workflow_dispatch:
       inputs:
         scope:
-          description: 'Log level'
+          description: 'Tests to be included with priority level:\nsmoke,basic,coverage'
           required: true
           default: 'smoke'
         app:
-          description: 'Application under test: Careesma, Engineerjobs, Wowjobs, Gigajob, Workopolis'
+          description: 'Application under test:\ncareesma, engineerjobs, wowjobs, gigajob, workopolis'
           required: true
           default: 'careesma'
+        stage:
+          description: 'Stage:\nqa, prod'
+          required: true
+          default: 'qa'
+        browser:
+          description: 'Browser:\nchrome, firefox, edge'
+          required: true
+          default: 'chrome'
+        platform:
+          description: 'Platform:\ndesktop, mobile'
+          required: true
+          default: '["desktop"]'
+        reportToDashboard:
+          description: 'Do you want to results to Dashboard:\ntrue, false'
+          required: true
+          default: true
+        specs:
+          description: 'Which spec files do you want to execute'
+          required: true
+          default: 'cypress/e2e/clientsites/*.js'
 
 jobs:
     test-workflow:
@@ -20,11 +40,11 @@ jobs:
             - name: Cypress tests
               uses: cypress-io/github-action@v3
               with:
-                env: scope=${{ github.event.inputs.scope }},app=${{ github.event.inputs.app }},stage=qa,executionPlatforms=["desktop"]
-                spec: cypress/e2e/clientsites/*.js
-                browser: chrome
-                tag: '${{ github.event.inputs.app }},chrome,desktop'
-                record: true
+                env: scope=${{ github.event.inputs.scope }},app=${{ github.event.inputs.app }},stage=${{ github.event.inputs.stage }},executionPlatforms=${{ github.event.inputs.platform }}
+                spec: ${{ github.event.inputs.specs }}
+                browser: ${{ github.event.inputs.browser }}
+                tag: '${{ github.event.inputs.app }},${{ github.event.inputs.stage }},${{ github.event.inputs.browser }},${{ github.event.inputs.platform }}'
+                record: ${{ github.event.inputs.reportToDashboard }}
               env:
                 CORTEX_GITHUB_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
                 NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
