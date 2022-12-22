@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "cypress": "^12.1.0",
+    "cypress-plugin-tab": "^1.0.5",
     "eslint": "^7.28.0",
     "prettier": "^2.3.0"
   },

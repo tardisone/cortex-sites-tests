@@ -3,27 +3,27 @@ on:
     workflow_dispatch:
       inputs:
         scope:
-          description: 'Tests to be included with priority level:\nsmoke,basic,coverage'
+          description: 'Tests to be included with priority level: smoke,basic,coverage'
           required: true
           default: 'smoke'
         app:
-          description: 'Application under test:\ncareesma, engineerjobs, wowjobs, gigajob, workopolis'
+          description: 'Application under test: careesma, engineerjobs, wowjobs, gigajob, workopolis'
           required: true
           default: 'careesma'
         stage:
-          description: 'Stage:\nqa, prod'
+          description: 'Stage: qa, prod'
           required: true
           default: 'qa'
         browser:
-          description: 'Browser:\nchrome, firefox, edge'
+          description: 'Browser: chrome, firefox, edge'
           required: true
           default: 'chrome'
         platform:
-          description: 'Platform:\ndesktop, mobile'
+          description: 'Platform: desktop, mobile'
           required: true
           default: '["desktop"]'
         reportToDashboard:
-          description: 'Do you want to results to Dashboard:\ntrue, false'
+          description: 'Do you want to results to Dashboard: true, false'
           required: true
           default: true
         specs:
