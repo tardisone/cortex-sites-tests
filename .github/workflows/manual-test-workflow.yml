@@ -1,6 +1,15 @@
 name: Manual Cypress Tests
 on:
     workflow_dispatch:
+      inputs:
+        scope:
+          description: 'Log level'
+          required: true
+          default: 'smoke'
+        app:
+          description: 'Application under test: Careesma, Engineerjobs, Wowjobs, Gigajob, Workopolis'
+          required: true
+          default: 'careesma'
 
 jobs:
     test-workflow:
@@ -11,10 +20,10 @@ jobs:
             - name: Cypress tests
               uses: cypress-io/github-action@v3
               with:
-                env: scope=smoke,app=careesma,stage=qa,executionPlatforms=["desktop"]
+                env: scope=${{ github.event.inputs.scope }},app=${{ github.event.inputs.app }},stage=qa,executionPlatforms=["desktop"]
                 spec: cypress/e2e/clientsites/*.js
                 browser: chrome
-                tag: 'careesma,chrome,desktop'
+                tag: '${{ github.event.inputs.app }},chrome,desktop'
                 record: true
               env:
                 CORTEX_GITHUB_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
