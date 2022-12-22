@@ -1,6 +1,7 @@
 import './commands';
 import TestBase from '../e2e/testbase/TestBase';
 import Locators from '../e2e/locators/Locators';
+require('cypress-plugin-tab');
 
 function suppressFetchLogs() {
     const origLog = Cypress.log;
