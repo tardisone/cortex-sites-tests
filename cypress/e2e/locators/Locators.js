@@ -3,7 +3,7 @@ class Locators {
     location_textbox = 'input[id="location-input"]';
     searchButton = 'button[data-testid="findJobsSearchSubmit"]';
     searchErrorAlert = '[data-testid="findJobsSearchErrorAlert"]';
-    autoCompleteItems = '[role="listbox"] span[role="button"]';
+    autoCompleteItems = 'span[role="button"]';
     jobResultsHeadline = 'header h1.SerpH1-headline';
     jds = '[id="job-list"] article';
     sortByNewestButton = 'div.SortToggle [aria-label="Sort by newest"]';
