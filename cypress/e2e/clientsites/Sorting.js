@@ -31,15 +31,11 @@ describe('Sorting Suite', function () {
                 base.log('Read post date of the last JD');
                 base.checkTotalPageCount();
                 cy.get('@totalPageCount').then((pages) => {
-                    cy.visit(
-                        baseUrl +
-                            jobsEndpoint +
-                            keyword_identifier +
-                            '=' +
-                            query_keyword +
-                            '&pn=' +
-                            pages
-                    );
+                    base.visit(jobsEndpoint, [
+                        keyword_identifier + '=' + query_keyword,
+                        sorting_by_newest_identifier,
+                        'pn' + '=' + pages,
+                    ]);
                     cy.get(locators.jds)
                         .find(locators.timeStamp)
                         .last()
@@ -48,14 +44,19 @@ describe('Sorting Suite', function () {
                             cy.get('@first_timestamp').then(
                                 (first_timestamp) => {
                                     let ft = 0;
+                                    let lt = 0;
                                     if (first_timestamp === 'a day ago') {
                                         ft = 1;
                                     } else {
                                         ft = parseInt(first_timestamp);
                                     }
-                                    expect(
-                                        parseInt(last_timestamp)
-                                    ).to.be.at.least(ft);
+                                    if (last_timestamp === 'a day ago') {
+                                        lt = 1;
+                                    } else {
+                                        lt = parseInt(last_timestamp);
+                                    }
+
+                                    expect(lt).to.be.at.least(ft);
                                 }
                             );
                         });

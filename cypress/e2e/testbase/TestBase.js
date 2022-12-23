@@ -4,6 +4,23 @@ class TestBase {
         cy.task('log', log);
     }
 
+    visit(endpoint, parameters) {
+        let targetUrl = baseUrl;
+        if (endpoint != null) {
+            targetUrl += endpoint;
+        }
+        targetUrl += '?';
+
+        let query_parameters = '';
+        parameters.forEach((p) => {
+            query_parameters += p + '&';
+        });
+        query_parameters += 'prforceGroups=default_to_fallback';
+
+        targetUrl += query_parameters;
+        cy.visit(targetUrl);
+    }
+
     prepareSut() {
         if (platform === 'mobile') {
             cy.viewport('iphone-5');
@@ -13,7 +30,7 @@ class TestBase {
         cy.on('uncaught:exception', (err, runnable) => {
             return false;
         });
-        cy.visit(baseUrl);
+        this.visit(null, []);
     }
 
     checkTotalPageCount() {

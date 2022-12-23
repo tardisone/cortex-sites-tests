@@ -2,6 +2,7 @@ import './commands';
 import TestBase from '../e2e/testbase/TestBase';
 import Locators from '../e2e/locators/Locators';
 require('cypress-plugin-tab');
+import 'cypress-wait-until';
 
 function suppressFetchLogs() {
     const origLog = Cypress.log;
@@ -24,12 +25,13 @@ function setSiteSpecificVariables() {
         '-' +
         globalThis.stage +
         '.cortexsdk.com/';
-    let jobsEndpoint = 'jobs?';
+    let jobsEndpoint = 'jobs';
     let keyword_identifier = 'ak';
     let location_identifier = 'l';
     let radius_identifier = 'sr';
     let query_city = 'ontario';
     let recentSearchHeader = 'Recent Searches';
+    let sorting_by_newest_identifier = 's=d';
     switch (app) {
         case 'careesma':
             keyword_identifier = 'q';
@@ -38,27 +40,29 @@ function setSiteSpecificVariables() {
             break;
         case 'workopolis':
             recentSearchHeader = 'Recent searches';
-            jobsEndpoint = 'jobsearch/find-jobs?';
+            jobsEndpoint = 'jobsearch/find-jobs';
             break;
         case 'engineerjobs':
-            jobsEndpoint = 'jobs/search?';
+            jobsEndpoint = 'jobs/search';
             recentSearchHeader = 'Recent searches';
             query_city = 'texas';
             break;
         case 'gigajob':
-            jobsEndpoint = 'suche?';
+            jobsEndpoint = 'suche';
             keyword_identifier = 's';
             location_identifier = 'o';
             query_city = 'berlin';
             radius_identifier = 'lr';
+            sorting_by_newest_identifier = 'st=d';
             recentSearchHeader = 'Letzte Suchanfragen';
             break;
         case 'wowjobs':
-            jobsEndpoint = 'BrowseResults.aspx?';
+            jobsEndpoint = 'BrowseResults.aspx';
             keyword_identifier = 'q';
             break;
     }
     globalThis.keyword_identifier = keyword_identifier;
+    globalThis.sorting_by_newest_identifier = sorting_by_newest_identifier;
     globalThis.location_identifier = location_identifier;
     globalThis.query_city = query_city;
     globalThis.radius_identifier = radius_identifier;
@@ -76,26 +80,23 @@ function excludeTests(currentTest) {
     let exclude_known_bug = currentTest.exclude_known_bug;
     globalThis.platform = currentTest.execPlatform;
     globalThis.locators = new Locators();
-    if (
-        Cypress.env().scope != test_priority ||
+    return !!(
+        (Cypress.env().scope == 'smoke' && test_priority !== 'smoke') ||
         (typeof applicable_system_for_current_test != 'undefined' &&
             !applicable_system_for_current_test.includes(globalThis.app)) ||
         (known_bug != null &&
             (exclude_known_bug === undefined ||
                 (exclude_known_bug != null &&
                     !exclude_known_bug.includes(globalThis.app)))) ||
-        (platform != 'undefined' &&
+        (platform !== 'undefined' &&
             !Cypress.env().executionPlatforms.includes(platform))
-    ) {
-        return true;
-    }
-    return false;
+    );
 }
 
 before(function () {
     if (setSiteSpecificVariables()) {
         suppressFetchLogs();
-        cy.visit(baseUrl);
+        base.visit(null, []);
     }
 });
 
