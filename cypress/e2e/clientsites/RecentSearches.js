@@ -9,6 +9,18 @@ describe('Recent Searches Suite', function () {
         });
     }
 
+    function prepareLocator(identifier, keyword) {
+        if (identifier === 'query') {
+            return globalThis.app === 'careesma' || globalThis.app === 'wowjobs'
+                ? ':contains("' + query_keyword + ' jobs")'
+                : ':contains("' + query_keyword + '")';
+        } else {
+            return globalThis.app === 'careesma' || globalThis.app === 'wowjobs'
+                ? ':contains("jobs in ' + keyword + '")'
+                : ':contains("' + keyword + '")';
+        }
+    }
+
     Cypress.env().executionPlatforms.forEach((executionPlatform) => {
         it(
             'Query Results ' + executionPlatform,
@@ -25,16 +37,14 @@ describe('Recent Searches Suite', function () {
                 cy.get(locators.keyword_textbox).type(
                     query_keyword + '{enter}'
                 );
-                expectedLabels.push(':contains("' + query_keyword + ' jobs")');
+                expectedLabels.push(prepareLocator('query', query_keyword));
                 checkRecentSearches(expectedLabels);
 
                 base.log('Query with location');
                 cy.get(locators.location_textbox).type(
                     query_location + '{enter}'
                 );
-                expectedLabels.push(
-                    ':contains("jobs in ' + query_location + '")'
-                );
+                expectedLabels.push(prepareLocator('location', query_location));
                 checkRecentSearches(expectedLabels);
 
                 base.log('Query with keyword and location');
@@ -61,7 +71,7 @@ describe('Recent Searches Suite', function () {
                         expectedLabels.shift();
                     }
                     expectedLabels.push(
-                        ':contains("' + query_keyword + i + ' jobs")'
+                        prepareLocator('query', query_keyword + i)
                     );
                     checkRecentSearches(expectedLabels);
                 }

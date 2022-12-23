@@ -45,12 +45,18 @@ describe('Sorting Suite', function () {
                                 (first_timestamp) => {
                                     let ft = 0;
                                     let lt = 0;
-                                    if (first_timestamp === 'a day ago') {
+                                    if (
+                                        first_timestamp === 'a day ago' ||
+                                        first_timestamp === 'vor 1 Tag'
+                                    ) {
                                         ft = 1;
                                     } else {
                                         ft = parseInt(first_timestamp);
                                     }
-                                    if (last_timestamp === 'a day ago') {
+                                    if (
+                                        last_timestamp === 'a day ago' ||
+                                        last_timestamp === 'vor 1 Tag'
+                                    ) {
                                         lt = 1;
                                     } else {
                                         lt = parseInt(last_timestamp);
