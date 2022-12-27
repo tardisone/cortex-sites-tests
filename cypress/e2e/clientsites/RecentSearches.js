@@ -23,7 +23,7 @@ describe('Recent Searches Suite', function () {
 
     Cypress.env().executionPlatforms.forEach((executionPlatform) => {
         it(
-            'Query Results  ' + executionPlatform,
+            'Query Results ' + executionPlatform,
             {
                 execPlatform: executionPlatform,
                 priority: 'smoke',
