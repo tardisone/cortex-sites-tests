@@ -27,7 +27,7 @@ on:
           required: true
           default: true
         specs:
-          description: 'Which spec files do you want to execute. /'changed/' for only changed tests'
+          description: 'Which spec files do you want to execute. "changed" for only changed tests'
           required: true
           default: 'cypress/e2e/clientsites/*.js'
         tags:
