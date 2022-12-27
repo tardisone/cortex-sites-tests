@@ -1,4 +1,4 @@
-name: Manual Cypress Tests
+name: Manually Run Changed Cypress Tests
 on:
   workflow_dispatch:
     inputs:
