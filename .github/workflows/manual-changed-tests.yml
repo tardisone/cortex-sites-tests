@@ -1,4 +1,4 @@
-name: Manual Cypress Tests
+name: Manually Run Changed Cypress Tests
 on:
   workflow_dispatch:
     inputs:
@@ -38,8 +38,7 @@ jobs:
         uses: cypress-io/github-action@v3
         with:
           env: scope=${{ github.event.inputs.scope }},app=${{ github.event.inputs.app }},stage=${{ github.event.inputs.stage }},executionPlatforms=${{ github.event.inputs.platform }}
-          spec:
-            cond: $(git diff --name-only origin/main -- cypress/e2e)
+          spec: $(git diff --name-only origin/main -- cypress/e2e)
           browser: ${{ github.event.inputs.browser }}
           tag: '${{ github.event.inputs.app }},${{ github.event.inputs.stage }},${{ github.event.inputs.browser }},${{ github.event.inputs.platform }}'
           record: ${{ github.event.inputs.reportToDashboard }}
