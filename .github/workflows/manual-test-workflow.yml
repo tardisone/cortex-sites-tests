@@ -31,7 +31,7 @@ on:
           required: true
           default: 'cypress/e2e/clientsites/*.js'
         tags:
-          description: 'Keyword driven testing'
+          description: 'Keyword driven testing. Pass your tag'
           required: true
           default: ''
 
@@ -45,10 +45,7 @@ jobs:
               uses: cypress-io/github-action@v3
               with:
                 env: scope=${{ github.event.inputs.scope }},app=${{ github.event.inputs.app }},stage=${{ github.event.inputs.stage }},executionPlatforms=${{ github.event.inputs.platform }}
-                spec:
-                  cond: ${{ github.event.inputs.specs  == 'changed' }}
-                  if_true:  $(git diff --name-only origin/main -- cypress/e2e)
-                  if_false: ${{ github.event.inputs.specs }}
+                spec: ${{ github.event.inputs.specs }}
                 browser: ${{ github.event.inputs.browser }}
                 tag: '${{ github.event.inputs.app }},${{ github.event.inputs.stage }},${{ github.event.inputs.browser }},${{ github.event.inputs.platform }}'
                 record: ${{ github.event.inputs.reportToDashboard }}
