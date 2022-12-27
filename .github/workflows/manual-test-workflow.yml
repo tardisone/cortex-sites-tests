@@ -27,9 +27,13 @@ on:
           required: true
           default: true
         specs:
-          description: 'Which spec files do you want to execute'
+          description: 'Which spec files do you want to execute. /'changed/' for only changed tests'
           required: true
           default: 'cypress/e2e/clientsites/*.js'
+        tags:
+          description: 'Keyword driven testing'
+          required: true
+          default: ''
 
 jobs:
     test-workflow:
@@ -41,7 +45,10 @@ jobs:
               uses: cypress-io/github-action@v3
               with:
                 env: scope=${{ github.event.inputs.scope }},app=${{ github.event.inputs.app }},stage=${{ github.event.inputs.stage }},executionPlatforms=${{ github.event.inputs.platform }}
-                spec: ${{ github.event.inputs.specs }}
+                spec:
+                  cond: ${{ github.event.inputs.specs  == 'changed' }}
+                  if_true:  $(git diff --name-only origin/main -- cypress/e2e)
+                  if_false: ${{ github.event.inputs.specs }}
                 browser: ${{ github.event.inputs.browser }}
                 tag: '${{ github.event.inputs.app }},${{ github.event.inputs.stage }},${{ github.event.inputs.browser }},${{ github.event.inputs.platform }}'
                 record: ${{ github.event.inputs.reportToDashboard }}

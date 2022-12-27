@@ -78,18 +78,20 @@ function excludeTests(currentTest) {
     let applicable_system_for_current_test = currentTest.app;
     let known_bug = currentTest.known_bug;
     let exclude_known_bug = currentTest.exclude_known_bug;
+    let tags = Cypress.env().tags;
     globalThis.platform = currentTest.execPlatform;
     globalThis.locators = new Locators();
-    return !!(
+    return (
         (Cypress.env().scope == 'smoke' && test_priority !== 'smoke') ||
-        (typeof applicable_system_for_current_test != 'undefined' &&
-            !applicable_system_for_current_test.includes(globalThis.app)) ||
-        (known_bug != null &&
-            (exclude_known_bug === undefined ||
-                (exclude_known_bug != null &&
-                    !exclude_known_bug.includes(globalThis.app)))) ||
         (platform !== 'undefined' &&
-            !Cypress.env().executionPlatforms.includes(platform))
+            !Cypress.env().executionPlatforms.includes(platform)) ||
+        (typeof applicable_system_for_current_test !== 'undefined' &&
+            !applicable_system_for_current_test.includes(globalThis.app)) ||
+        (typeof known_bug !== 'undefined' &&
+            (typeof exclude_known_bug === 'undefined' ||
+                (typeof exclude_known_bug !== 'undefined' &&
+                    !exclude_known_bug.includes(globalThis.app)))) ||
+        (tags != '' && !currentTest.tags.includes(tags))
     );
 }
 

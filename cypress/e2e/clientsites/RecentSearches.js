@@ -14,10 +14,14 @@ describe('Recent Searches Suite', function () {
             return globalThis.app === 'careesma' || globalThis.app === 'wowjobs'
                 ? ':contains("' + query_keyword + ' jobs")'
                 : ':contains("' + query_keyword + '")';
-        } else {
+        } else if (identifier === 'location') {
             return globalThis.app === 'careesma' || globalThis.app === 'wowjobs'
                 ? ':contains("jobs in ' + keyword + '")'
                 : ':contains("' + keyword + '")';
+        } else {
+            return globalThis.app === 'gigajob'
+                ? ':contains("' + keyword[0] + ' in ' + keyword[1] + '")'
+                : ':contains("' + keyword[0] + ' jobs in ' + keyword[1] + '")';
         }
     }
 
@@ -25,6 +29,7 @@ describe('Recent Searches Suite', function () {
         it(
             'Query Results ' + executionPlatform,
             {
+                tags: 'recentSearches',
                 execPlatform: executionPlatform,
                 priority: 'smoke',
             },
@@ -51,13 +56,9 @@ describe('Recent Searches Suite', function () {
                 cy.get(locators.keyword_textbox)
                     .type(query_keyword)
                     .get(locators.location_textbox)
-                    .type(query_location + '{enter}');
+                    .type(query_location + '{enter}', { force: true });
                 expectedLabels.push(
-                    ':contains("' +
-                        query_keyword +
-                        ' jobs in ' +
-                        query_location +
-                        '")'
+                    prepareLocator('both', [query_keyword, query_location])
                 );
                 checkRecentSearches(expectedLabels);
 

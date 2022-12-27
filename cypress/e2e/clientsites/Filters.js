@@ -53,7 +53,9 @@ describe('Filters Suite', function () {
             () => {
                 base.log('Query with keyword and location');
                 cy.get(locators.keyword_textbox).type(query_keyword);
-                cy.get(locators.location_textbox).type(query_city + '{enter}');
+                cy.get(locators.location_textbox).type(query_city + '{enter}', {
+                    force: true,
+                });
 
                 base.log('Iterate over all times');
                 cy.wrap(0).as('prevCount');
@@ -97,7 +99,9 @@ describe('Filters Suite', function () {
             () => {
                 base.log('Query with keyword and location');
                 cy.get(locators.keyword_textbox).type(query_keyword);
-                cy.get(locators.location_textbox).type(query_city + '{enter}');
+                cy.get(locators.location_textbox).type(query_city + '{enter}', {
+                    force: true,
+                });
                 base.checkTotalResultsCount();
                 cy.get('@totalResultsCount').as('initialCount');
 

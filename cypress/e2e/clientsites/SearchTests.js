@@ -11,7 +11,7 @@ describe('Search Suite', function () {
                 cy.get(locators.keyword_textbox).type(query_keyword);
 
                 base.log('Perform the search by clicking button');
-                cy.get(locators.searchButton).click();
+                cy.get(locators.searchButton).click({ force: true });
 
                 base.results_verification(['keyword']);
             }
@@ -43,10 +43,12 @@ describe('Search Suite', function () {
             () => {
                 base.log('Fill out user queries');
                 cy.get(locators.keyword_textbox).type(query_keyword);
-                cy.get(locators.location_textbox).type(query_location);
+                cy.get(locators.location_textbox).type(query_location, {
+                    force: true,
+                });
 
                 base.log('Perform the search by clicking button');
-                cy.get(locators.searchButton).click();
+                cy.get(locators.searchButton).click({ force: true });
 
                 base.results_verification(['keyword', 'location']);
             }

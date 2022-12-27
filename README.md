@@ -30,6 +30,7 @@ Some parameters can be added to commands to customize the executions:
 -   To run a specific spec file instead of the whole suite (regex and list supported)
 ```bash
 --spec "**/Filters.js, **/Results.js"
+--spec $(git diff --name-only origin/main -- cypress/e2e)
 ```
 
 -   To change the browser settings
@@ -49,7 +50,7 @@ CYPRESS_BASE_URL=https://townwork.net/ cypress
 
 - Other environmental parameters
 ```bash
---env scope=coverage,app=froma,stage=qa,executionPlatforms="['desktop','mobile']",
+--env scope=coverage,app=froma,stage=qa,executionPlatforms="[desktop,mobile]",
 ```
 
 ## Execution on the Pipelines
