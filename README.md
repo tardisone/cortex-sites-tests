@@ -1,8 +1,8 @@
 # Cortex Client Sites E2E Tests
 
-- [Start Cypress](##Start_Cypress])
-- [Parameters](##Parameters)
-- [Execution on the Pipelines](##Execution_on_the_Pipelines)
+- [Start Cypress](#Start_Cypress)
+- [Parameters](#Parameters)
+- [Execution on the Pipelines](#Execution_on_the_Pipelines)
 
 ## Start_Cypress
 After setup, Cypress is ready to be executed. It can be started by jusr running from the command line:
