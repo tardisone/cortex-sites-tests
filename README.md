@@ -1,10 +1,10 @@
 # Cortex Client Sites E2E Tests
 
-- [Start Cypress](##Start Cypress])
+- [Start Cypress](##Start_Cypress])
 - [Parameters](##Parameters)
-- [Execution on the Pipelines](##Execution on the Pipelines)
+- [Execution on the Pipelines](##Execution_on_the_Pipelines)
 
-## Start Cypress
+## Start_Cypress
 After setup, Cypress is ready to be executed. It can be started by jusr running from the command line:
 
 ```bash
@@ -53,7 +53,7 @@ CYPRESS_BASE_URL=https://townwork.net/ cypress
 --env scope=coverage,app=froma,stage=qa,executionPlatforms="[desktop,mobile]",
 ```
 
-## Execution on the Pipelines
+## Execution_on_the_Pipelines
 
 Some examples:
 
