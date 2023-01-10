@@ -1,15 +1,15 @@
 name: Manual Cypress Tests
 on:
     workflow_dispatch:
-#      inputs:
+      inputs:
 #        scope:
 #          description: 'Tests to be included with priority level: smoke,basic,coverage'
 #          required: true
 #          default: 'smoke'
-#        app:
-#          description: 'Application under test: careesma, engineerjobs, wowjobs, gigajob, workopolis'
-#          required: true
-#          default: 'careesma'
+        app:
+          description: 'Application under test: careesma, engineerjobs, wowjobs, gigajob, workopolis'
+          required: true
+          default: 'careesma'
 #        stage:
 #          description: 'Stage: qa, prod'
 #          required: true

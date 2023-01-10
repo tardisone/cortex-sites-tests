@@ -4,9 +4,8 @@ on:
   workflow_call:
     inputs:
       app:
-        description: 'Application under test: careesma, engineerjobs, wowjobs, gigajob, workopolis'
         required: true
-        default: 'careesma'
+        type: string
 
 jobs:
   test-workflow:
