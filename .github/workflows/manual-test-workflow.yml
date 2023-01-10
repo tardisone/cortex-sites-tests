@@ -44,7 +44,7 @@ jobs:
             - name: Cypress tests
               uses: cypress-io/github-action@v3
               with:
-                env: tags=${{ github.event.inputs.tags }},scope=${{ github.event.inputs.scope }},app=${{ github.event.inputs.app }},stage=${{ github.event.inputs.stage }},executionPlatforms='["desktop", "mobile"]'
+                env: tags=${{ github.event.inputs.tags }},scope=${{ github.event.inputs.scope }},app=${{ github.event.inputs.app }},stage=${{ github.event.inputs.stage }},executionPlatforms='[desktop, mobile]'
                 spec: ${{ github.event.inputs.specs }}
                 browser: ${{ github.event.inputs.browser }}
                 tag: '${{ github.event.inputs.app }},${{ github.event.inputs.stage }},${{ github.event.inputs.browser }},${{ github.event.inputs.platform }}'
