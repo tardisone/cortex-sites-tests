@@ -37,7 +37,7 @@ on:
 
 jobs:
   call-e2e-tests:
-    uses: tardisone/cortex-sites-tests/.github/workflows/callable-e2e-cypress.yml
+    uses: ./.github/workflows/callable-e2e-cypress.yml
     with:
       app-path: workopolis
 
