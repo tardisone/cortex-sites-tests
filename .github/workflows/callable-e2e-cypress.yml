@@ -1,6 +1,7 @@
 name: E2E Cypress Tests
+
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       app:
         description: 'Application under test: careesma, engineerjobs, wowjobs, gigajob, workopolis'
@@ -16,10 +17,9 @@ jobs:
       - name: Cypress tests
         uses: cypress-io/github-action@v3
         with:
-          env: scope=smoke,stage=qa,executionPlatforms='["desktop","mobile"]',app=${{ github.event.inputs.app }}
+          env: scope=smoke,stage=qa,executionPlatforms=["desktop","mobile"],app=${{ github.event.inputs.app }}
           spec: cypress/e2e/clientsites/Results.js
           browser: chrome
-          tag: '${{ github.event.inputs.app }}'
           record: true
         env:
           CORTEX_GITHUB_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
