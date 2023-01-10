@@ -79,7 +79,7 @@ function excludeTests(currentTest) {
     let known_bug = currentTest.known_bug;
     let exclude_known_bug = currentTest.exclude_known_bug;
     //let tags = Cypress.env().tags;
-    let test_tag = currentTest.tags;
+    //let test_tag = currentTest.tags;
     globalThis.platform = currentTest.execPlatform;
     globalThis.locators = new Locators();
     return (
