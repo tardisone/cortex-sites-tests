@@ -39,7 +39,7 @@ jobs:
   call-e2e-tests:
     uses: ./.github/workflows/callable-e2e-cypress.yml
     with:
-      app-path: workopolis
+      app: workopolis
 
 #
 #jobs:
