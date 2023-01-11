@@ -51,7 +51,19 @@ CYPRESS_BASE_URL=https://townwork.net/ cypress
 - Other environmental parameters
 ```bash
 --env scope=coverage,app=froma,stage=qa,executionPlatforms="[desktop,mobile]",
+
 ```
+string parameters are passed without but arrays are with quotation marks. They can be passed either from 
+console or github UI in one of the forms:
+```bash
+"[desktop,mobile]" 
+'[desktop,mobile]' 
+"['desktop', 'mobile']" 
+'["desktop", "mobile"]'
+```
+
+Assigning in the yaml file is slightly different. Either direct assignment or matrix usage should be without quotation 
+marks. (ie [‘desktop’])
 
 ## Execution_on_the_Pipelines
 

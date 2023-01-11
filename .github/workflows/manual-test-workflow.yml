@@ -32,7 +32,7 @@ on:
           default: 'cypress/e2e/clientsites/*.js'
         tags:
           description: 'Keyword driven testing. Pass your tag'
-          required: true
+          required: false
           default: ''
 
 jobs:
