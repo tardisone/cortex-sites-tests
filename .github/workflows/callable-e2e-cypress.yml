@@ -6,9 +6,9 @@ on:
       app:
         required: true
         type: string
-    secrets:
-      cypresskey:
-        required: true
+#    secrets:
+#      cypresskey:
+#        required: true
 
 jobs:
   test-workflow:
@@ -24,6 +24,7 @@ jobs:
           browser: chrome
           record: true
         env:
-          CYPRESS_RECORD_KEY: ${{ secrets.cypresskey }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
+          #${{ secrets.cypresskey }}
            #d2d263b4-fe3e-4943-a781-5c1e7711f6b6
 
