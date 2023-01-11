@@ -62,9 +62,8 @@ console or github UI in one of the forms:
 '["desktop", "mobile"]'
 ```
 
-
-
-
+Assigning in the yaml file is slightly different. Either direct assignment or matrix usage should be without quotation 
+marks. (ie [‘desktop’])
 
 ## Execution_on_the_Pipelines
 
