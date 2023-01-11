@@ -41,8 +41,8 @@ jobs:
     with:
       app: workopolis
     secrets:
-      CYPRESSDASHBOARDFORCLIENTSITES: d2d263b4-fe3e-4943-a781-5c1e7711f6b6
-      #${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
+      CYPRESSDASHBOARDFORCLIENTSITES: ${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
+      #d2d263b4-fe3e-4943-a781-5c1e7711f6b6
 #
 #jobs:
 #    test-workflow:

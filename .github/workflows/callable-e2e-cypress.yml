@@ -7,7 +7,7 @@ on:
         required: true
         type: string
     secrets:
-      CYPRESSDASHBOARDFORCLIENTSITES:
+      cypresskey:
         required: true
 
 jobs:
@@ -24,6 +24,6 @@ jobs:
           browser: chrome
           record: true
         env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
+          CYPRESS_RECORD_KEY: ${{ secrets.cypresskey }}
            #d2d263b4-fe3e-4943-a781-5c1e7711f6b6
 
