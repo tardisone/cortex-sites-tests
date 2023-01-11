@@ -36,9 +36,21 @@ on:
           default: ''
 
 jobs:
-    test-workflow:
-        runs-on: windows-latest
-        steps:
+  call-e2e-tests:
+    uses: ./.github/workflows/callable-e2e-cypress.yml
+    with:
+      app: workopolis
+    env:
+      CORTEX_GITHUB_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
+      NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+      PUBLISH_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
+
+#
+#jobs:
+#    test-workflow:
+#        runs-on: windows-latest
+#        steps:
 #            - name: checkout
 #              uses: actions/checkout@v3
 #            - name: Cypress tests
@@ -49,11 +61,8 @@ jobs:
 #                browser: ${{ github.event.inputs.browser }}
 #                tag: '${{ github.event.inputs.app }},${{ github.event.inputs.stage }},${{ github.event.inputs.browser }},${{ github.event.inputs.platform }}'
 #                record: ${{ github.event.inputs.reportToDashboard }}
-            - uses: ./.github/workflows/callable-e2e-cypress.yml
-              with:
-                app: workopolis
-              env:
-                CORTEX_GITHUB_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
-                NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-                PUBLISH_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
-                CYPRESS_RECORD_KEY: ${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
+#              env:
+#                CORTEX_GITHUB_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
+#                NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+#                PUBLISH_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
+#                CYPRESS_RECORD_KEY: ${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
