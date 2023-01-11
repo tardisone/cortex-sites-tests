@@ -41,7 +41,7 @@ jobs:
     with:
       app: workopolis
     secrets:
-      CYPRESSDASHBOARDFORCLIENTSITES: ${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
+      cypresskey: ${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
       #d2d263b4-fe3e-4943-a781-5c1e7711f6b6
 #
 #jobs:
