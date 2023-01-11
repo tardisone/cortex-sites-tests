@@ -6,9 +6,9 @@ on:
       app:
         required: true
         type: string
-#    secrets:
-#      CYPRESS_RECORD_KEY:
-#        required: true
+    secrets:
+      CYPRESSDASHBOARDFORCLIENTSITES:
+        required: true
 
 jobs:
   test-workflow:
