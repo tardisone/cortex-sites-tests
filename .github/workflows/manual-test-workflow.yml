@@ -40,9 +40,9 @@ jobs:
     uses: ./.github/workflows/callable-e2e-cypress.yml
     with:
       app: workopolis
-#    secrets:
-#      cypresskey: ${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
-#
+    secrets:
+      cypresskey: ${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
+
 #jobs:
 #    test-workflow:
 #        runs-on: windows-latest
