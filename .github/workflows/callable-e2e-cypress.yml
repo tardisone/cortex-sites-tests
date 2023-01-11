@@ -22,6 +22,6 @@ jobs:
           env: scope=smoke,stage=qa,executionPlatforms=["desktop","mobile"],app=${{ inputs.app }}
           spec: cypress/e2e/clientsites/Results.js
           browser: chrome
-          key: ${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
+          key: d2d263b4-fe3e-4943-a781-5c1e7711f6b6
           record: true
 
