@@ -2,50 +2,43 @@ name: Manual Cypress Tests
 on:
     workflow_dispatch:
       inputs:
-#        scope:
-#          description: 'Tests to be included with priority level: smoke,basic,coverage'
-#          required: true
-#          default: 'smoke'
+        scope:
+          description: 'Tests to be included with priority level: smoke,basic,coverage'
+          required: true
+          default: 'smoke'
         app:
           description: 'Application under test: careesma, engineerjobs, wowjobs, gigajob, workopolis'
           required: true
           default: 'careesma'
-#        stage:
-#          description: 'Stage: qa, prod'
-#          required: true
-#          default: 'qa'
-#        browser:
-#          description: 'Browser: chrome, firefox, edge'
-#          required: true
-#          default: 'chrome'
-#        platform:
-#          description: 'Platform: desktop, mobile'
-#          required: true
-#          default: '["desktop"]'
-#        reportToDashboard:
-#          description: 'Do you want to results to Dashboard: true, false'
-#          required: true
-#          default: true
-#        specs:
-#          description: 'Which spec files do you want to execute. "changed" for only changed tests'
-#          required: true
-#          default: 'cypress/e2e/clientsites/*.js'
-#        tags:
-#          description: 'Keyword driven testing. Pass your tag'
-#          required: false
-#          default: ''
+        stage:
+          description: 'Stage: qa, prod'
+          required: true
+          default: 'qa'
+        browser:
+          description: 'Browser: chrome, firefox, edge'
+          required: true
+          default: 'chrome'
+        platform:
+          description: 'Platform: desktop, mobile'
+          required: true
+          default: '["desktop"]'
+        reportToDashboard:
+          description: 'Do you want to results to Dashboard: true, false'
+          required: true
+          default: true
+        specs:
+          description: 'Which spec files do you want to execute. "changed" for only changed tests'
+          required: true
+          default: 'cypress/e2e/clientsites/*.js'
+        tags:
+          description: 'Keyword driven testing. Pass your tag'
+          required: false
+          default: ''
 
 jobs:
-  call-e2e-tests:
-    uses: ./.github/workflows/callable-e2e-cypress.yml
-    with:
-      app: workopolis
-
-#
-#jobs:
-#    test-workflow:
-#        runs-on: windows-latest
-#        steps:
+    test-workflow:
+        runs-on: windows-latest
+        steps:
 #            - name: checkout
 #              uses: actions/checkout@v3
 #            - name: Cypress tests
@@ -56,8 +49,11 @@ jobs:
 #                browser: ${{ github.event.inputs.browser }}
 #                tag: '${{ github.event.inputs.app }},${{ github.event.inputs.stage }},${{ github.event.inputs.browser }},${{ github.event.inputs.platform }}'
 #                record: ${{ github.event.inputs.reportToDashboard }}
-#              env:
-#                CORTEX_GITHUB_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
-#                NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-#                PUBLISH_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
-#                CYPRESS_RECORD_KEY: ${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
+            - uses: ./.github/workflows/callable-e2e-cypress.yml
+              with:
+                app: workopolis
+              env:
+                CORTEX_GITHUB_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
+                NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+                PUBLISH_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
+                CYPRESS_RECORD_KEY: ${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
