@@ -1,0 +1,27 @@
+name: E2E Cypress Tests
+
+on:
+  workflow_call:
+    inputs:
+      app:
+        required: true
+        type: string
+    secrets:
+      cypresskey:
+        required: true
+
+jobs:
+  test-workflow:
+    runs-on: windows-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: Cypress tests
+        uses: cypress-io/github-action@v3
+        with:
+          env: scope=smoke,stage=local,executionPlatforms=["desktop","mobile"],app=${{ inputs.app }}
+          spec: cypress/e2e/clientsites/*.js
+          browser: chrome
+          record: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.cypresskey }} # or just pass the key here
