@@ -6,9 +6,9 @@ on:
       app:
         required: true
         type: string
-    secrets:
-      CYPRESS_RECORD_KEY:
-        required: true
+#    secrets:
+#      CYPRESS_RECORD_KEY:
+#        required: true
 
 jobs:
   test-workflow:
@@ -22,5 +22,6 @@ jobs:
           env: scope=smoke,stage=qa,executionPlatforms=["desktop","mobile"],app=${{ inputs.app }}
           spec: cypress/e2e/clientsites/Results.js
           browser: chrome
+          key: ${{ secrets.CYPRESSDASHBOARDFORCLIENTSITES }}
           record: true
-          key: ${{ secrets.CYPRESS_RECORD_KEY }}
+
