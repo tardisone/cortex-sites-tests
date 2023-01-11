@@ -19,7 +19,7 @@ jobs:
       - name: Cypress tests
         uses: cypress-io/github-action@v3
         with:
-          env: scope=smoke,stage=qa,executionPlatforms=["desktop","mobile"],app=${{ github.event.inputs.app }}
+          env: scope=smoke,stage=qa,executionPlatforms=["desktop","mobile"],app=${{ inputs.app }}
           spec: cypress/e2e/clientsites/Results.js
           browser: chrome
           record: true
