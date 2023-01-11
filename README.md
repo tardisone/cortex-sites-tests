@@ -51,6 +51,7 @@ CYPRESS_BASE_URL=https://townwork.net/ cypress
 - Other environmental parameters
 ```bash
 --env scope=coverage,app=froma,stage=qa,executionPlatforms="[desktop,mobile]",
+--env scope=coverage,app=froma,stage=qa,executionPlatforms='["desktop","mobile"]',
 ```
 
 ## Execution_on_the_Pipelines

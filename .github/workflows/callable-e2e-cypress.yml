@@ -6,6 +6,9 @@ on:
       app:
         required: true
         type: string
+    secrets:
+      CYPRESS_RECORD_KEY:
+        required: true
 
 jobs:
   test-workflow:
@@ -20,7 +23,7 @@ jobs:
           spec: cypress/e2e/clientsites/Results.js
           browser: chrome
           record: true
-        env:
+        secrets:
           CORTEX_GITHUB_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
           PUBLISH_TOKEN_NPM: ${{ secrets.PUBLISH_TOKEN }}
